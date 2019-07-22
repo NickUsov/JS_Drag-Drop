@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <style>
+        .stanford_bridge {
+            width: 70%;
+            height: 95vh;
+            background-image: url("field.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .ball {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <div class="stanford_bridge">
+        <img src="ball.png" alt="ball" class="ball">
+    </div>
+    <script>
+        
+		let ball = document.querySelector('.ball');
+		ball.onload = () => 
+		{
+			//1 Отследить нажатие
+			ball.addEventListener('mousedown', () => {
+
+				//2 Подготовить к переносу 
+				let coords = ball.getBoundingClientRect();
+				let shiftX = event.pageX - coords.left;
+				let shiftY = event.pageY - coords.top;
+
+				console.log(shiftY, shiftY);
+
+				
+				ball.style.position = 'absolute';
+				document.querySelector('.stanford_bridge').appendChild(ball);
+				moveAt(event, shiftX, shiftY);
+
+				//3 Перемещаем по экрану
+				document.querySelector('.stanford_bridge').onmousemove = () => 
+				{
+					moveAt(event, shiftX, shiftY);
+				}
+
+				//4 Отслеживаем окончание переноса 
+				ball.onmouseup = () => {
+					document.querySelector('.stanford_bridge').onmousemove = null;
+					ball.onmouseup = null;
+				}
+			});
+
+			function moveAt(e, shiftX, shiftY) 
+			{
+				console.log('Установка топ лефт');
+				console.log(shiftX);
+				ball.style.left = e.pageX - shiftX + 'px';
+				ball.style.top = e.pageY - shiftY + 'px';
+			}
+
+			ball.ondragstart = () => {return false}
+		}
+    </script> -->
+    <style>
+        /* .container {
+            padding: 20px;
+        } */
+        .slider {
+            width: 20%;
+            height: 20px;
+            background-color: #888888;
+            position: relative;
+            border-radius: 10px;
+        }
+        .token {
+            position: absolute;
+            width: 10px;
+            height: 30px;
+            background-color: rgb(67, 18, 145);
+            top: -5px;
+            border-radius: 2px;
+        }
+    </style>
+    <div class="container">
+        <div class="slider">
+            <div class="token"></div>
+        </div>  
+        
+    </div>
+    <script>
+        let token = document.querySelector('.token');
+        let coordsSlider = document.querySelector('.slider').getBoundingClientRect();
+
+			//1 Отследить нажатие
+			token.addEventListener('mousedown', () => {
+
+				//2 Подготовить к переносу 
+				let coords = token.getBoundingClientRect();
+				
+
+				let shiftX = event.pageX - coords.left;
+				
+
+				
+
+				
+				token.style.position = 'absolute';
+				//document.querySelector('.slider').appendChild(token);
+				moveAt(event, shiftX);
+
+				//3 Перемещаем по экрану
+				document.querySelector('.slider').onmousemove = () => 
+				{
+					moveAt(event, shiftX);
+				}
+
+				//4 Отслеживаем окончание переноса 
+				token.onmouseup = () => {
+					document.querySelector('.slider').onmousemove = null;
+					token.onmouseup = null;
+				}
+			});
+
+			function moveAt(e, shiftX) 
+			{
+				
+                if(e.pageX > coordsSlider.right) {
+                    token.style.left = coordsSlider.right - 50 + 'px';
+                } else {
+                    console.log('Установка топ лефт');
+                    console.log(shiftX);
+                    token.style.left = e.pageX - shiftX + 'px';
+                    token.style.top = '-5px';
+                }
+			}
+
+			token.ondragstart = () => {return false};
+    </script>
+</body>
+</html>
